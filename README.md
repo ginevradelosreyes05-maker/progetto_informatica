@@ -10,9 +10,9 @@ Il sistema automatizza l'assegnazione dei codici colore di priorità clinica ana
 
 * **Calcolo Algoritmico della Gravità:** Assegnazione istantanea del codice di priorità (*Rosso, Giallo, Verde*) basata sui range fisiologici dei parametri vitali.
 * **Controllo Incrociato di Sicurezza:** Verifica in tempo reale se la sintomatologia corrente contiene sostanze, allergeni o farmaci a cui il paziente è storicamente vulnerabile.
-* **[NEW] Allocazione Logistica Intelligente:** Smistamento dinamico del paziente nei reparti di *Medicina Generale*, *Cardiologia* o *Pediatria*. L'assegnazione a Pediatria è completamente automatizzata per pazienti sotto i 14 anni o in presenza di parole chiave sintomatologiche ("bambino"/"bambina").
-* **[NEW] Algoritmo di Calcolo delle Code:** Stima dei minuti di attesa pesata in base al codice colore assegnato, al numero di medici attualmente in turno e al tasso di saturazione delle stanze del reparto specifico.
-* **[NEW] Persistenza Dati Unificata (Database Relazionale):** Sostituito il vecchio tracciamento su file CSV sparsi. Il sistema ora si appoggia a un database relazionale locale simulato (`database_ospedale.mat`) composto dalle tabelle strutturate `PAZIENTE` (anagrafica e storico clinico) e `TRIAGE` (registro storico degli accessi).
+* **Allocazione Logistica Intelligente:** Smistamento dinamico del paziente nei reparti di *Medicina Generale*, *Cardiologia* o *Pediatria*. 
+* **Algoritmo di Calcolo delle Code:** Stima dei minuti di attesa pesata in base al codice colore assegnato, al numero di medici attualmente in turno e al tasso di saturazione delle stanze del reparto specifico.
+* **Persistenza Dati Unificata (Database Relazionale):**  Il sistema si appoggia a un database relazionale locale simulato (`database_ospedale.mat`) composto dalle tabelle strutturate `PAZIENTE` (anagrafica e storico clinico) e `TRIAGE` (registro storico degli accessi).
 * **Feedback Multimediale:** Indicatori visivi cromatici dinamici e allarmi acustici d'emergenza modulati in frequenza per i Codici Rossi.
 
 ---
