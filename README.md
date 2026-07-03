@@ -245,3 +245,7 @@ Premere il pulsante **Run** in MATLAB App Designer.
 Progetto sviluppato per il corso di:
 
 **Fondamenti di Informatica**
+
+Progetto sviluppato da:
+
+**Ginevra Delos Reyes, Matteo Marino**
