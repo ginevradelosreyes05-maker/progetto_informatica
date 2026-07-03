@@ -1,9 +1,7 @@
 function [minutiAttesa, repartoAssegnato] = calcolaTempoAttesa(codiceColore, sintomi)
-% CALCOLATEMPOATTESA Algoritmo di simulazione dinamica delle risorse ospedaliere
+% Algoritmo di simulazione dinamica delle risorse ospedaliere
 
-%% 1. DEFINIZIONE DELLO STATO DEI REPARTI (Stanze, Medici, Occupazione)
-% Strutturiamo i reparti come un dizionario di configurazione interna.
-% In un sistema reale questi dati arriverebbero da un monitoraggio live.
+%% DEFINIZIONE DELLO STATO DEI REPARTI (Stanze, Medici, Occupazione)
 
 reparti.Cardiologia = struct('MediciInTurno', 2, 'StanzeTotali', 3,  'StanzeOccupate', randi([0, 3]));
 reparti.Medicina    = struct('MediciInTurno', 4, 'StanzeTotali', 10, 'StanzeOccupate', randi([5, 10]));
@@ -11,7 +9,7 @@ reparti.Pediatria   = struct('MediciInTurno', 2, 'StanzeTotali', 4,  'StanzeOccu
 
 sintomiLower = lower(sintomi);
 
-%% 2. ASSEGNAZIONE AUTOMATICA DEL REPARTO IN BASE AI SINTOMI
+%%  ASSEGNAZIONE AUTOMATICA DEL REPARTO IN BASE AI SINTOMI
 if contains(sintomiLower, 'pediatria') || contains(sintomiLower, 'bambino') || contains(sintomiLower, 'neonato')
     repartoAssegnato = 'Pediatria';
 elseif contains(sintomiLower, 'toracico') || contains(sintomiLower, 'cuore') || contains(sintomiLower, 'arresto') || strcmpi(codiceColore, 'Rosso')
@@ -29,7 +27,7 @@ res = reparti.(repartoAssegnato);
 % Calcoliamo il tasso di saturazione delle stanze (da 0 a 1)
 saturazioneStanze = res.StanzeOccupate / res.StanzeTotali;
 
-% Tempo base in minuti determinato dal Codice Colore (Priorità Clinica)
+% Tempo base in minuti determinato dal Codice Colore 
 switch codiceColore
     case 'Rosso'
         minutiAttesa = 0; % Emergenza assoluta: nessuna attesa, salta la coda
@@ -45,10 +43,10 @@ end
 % Algoritmo della Coda Simulata:
 % Moltiplichiamo il tempo base per l'indice di saturazione delle stanze
 % e lo dividiamo per il numero di medici attivi in quel turno.
-% Aggiungiamo una componente casuale (randi) per simulare l'imprevedibilità del PS.
+% Aggiungiamo una componente casuale per simulare l'imprevedibilità del PS.
 
 if res.StanzeOccupate >= res.StanzeTotali
-    % Se il reparto è clinicamente pieno (sovraffollamento), scatta un malus di attesa
+    % Se il reparto è pieno, scatta un malus di attesa
     moltiplicatoreCoda = 2.5; 
 else
     moltiplicatoreCoda = 1 + (saturazioneStanze * 1.5);
